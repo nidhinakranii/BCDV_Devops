@@ -1,26 +1,25 @@
-name: NPM Test
+name: Run Jest Tests
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  npm_test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: List contents of the working directory
-        run: ls -l
+    - name: Install Dependencies
+      run: npm install
+      working-directory: my-react-app
 
-      - name: Navigate to my-react-app directory
-        run: cd my-react-app || exit 1
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Jest test
-        run: npm test
+    - name: Run Jest Tests
+      run: npm test
+      working-directory: my-react-app
