@@ -1,15 +1,12 @@
-name: Run Jest Tests
+name: Build and Upload Artifact
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +17,12 @@ jobs:
       run: npm install
       working-directory: my-react-app
 
-    - name: Run Jest Tests
-      run: npm test
+    - name: Build Project
+      run: npm run build
       working-directory: my-react-app
+
+    - name: Archive Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-react-app-build
+        path: my-react-app/dist
