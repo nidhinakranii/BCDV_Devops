@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Navigate to my-react-app directory
+        run: cd my-react-app
+
       - name: Install dependencies
         run: npm install
 
