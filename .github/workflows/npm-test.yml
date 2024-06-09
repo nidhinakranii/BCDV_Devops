@@ -13,8 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List contents of the working directory
+        run: ls -l
+
       - name: Navigate to my-react-app directory
-        run: cd ${{ github.workspace }}/my-react-app
+        run: cd my-react-app || exit 1
 
       - name: Install dependencies
         run: npm install
